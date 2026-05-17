@@ -3,58 +3,88 @@
     <img src="img/logo.png" width="70%"/>
   </kbd>
 </div>
-<br />
 
-# CARLA Simulator with MQTT & Hydra Toolkit
+<h1 align="center">Grand Hack Auto Sandbox</h1>
 
-A practical sandbox environment for experimenting with the CARLA autonomous driving simulator, MQTT communication, and the Hydra-MQTT toolkit for reconnaissance and command interaction testing.
+<p align="center">
+  CARLA + MQTT + Malware Detection Engine for Connected and Autonomous Vehicle Security Research
+</p>
 
-This environment integrates CARLA, Docker, Mosquitto MQTT broker, and Python MQTT clients to simulate connected vehicle communication and controlled MQTT-based experimentation.
-
----
-
-## Overview
-
-This project demonstrates:
-
-- CARLA simulator deployment inside Ubuntu VM
-- MQTT communication using Mosquitto broker
-- Docker-based CARLA environment
-- MQTT client interaction with CARLA
-- Hydra-MQTT toolkit integration
-- Multi-vehicle simulation support
-- MQTT topic monitoring and command testing
-
-> This project is intended for research, educational purposes, and controlled lab experimentation only.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3-blue" />
+  <img src="https://img.shields.io/badge/CARLA-0.9.13-green" />
+  <img src="https://img.shields.io/badge/MQTT-Mosquitto-orange" />
+  <img src="https://img.shields.io/badge/Docker-Supported-blue" />
+</p>
 
 ---
 
-## Features
+# Overview
 
-- ✅ CARLA simulator running in Docker containers
-- ✅ Mosquitto MQTT broker integration
-- ✅ MQTT client communication with CARLA
-- ✅ Multiple simulated vehicle support
-- ✅ Hydra-MQTT toolkit execution and testing
-- ✅ Docker Compose deployment workflow
-- ✅ Lightweight Python MQTT client implementation
-- ✅ Ubuntu 20 virtual machine environment
+Grand Hack Auto Sandbox is a reproducible research environment designed for studying cloud-based malware attacks against Connected and Autonomous Vehicles (CAVs).
+
+The project integrates:
+
+- CARLA 0.9.13 simulator
+- Eclipse Mosquitto MQTT broker
+- Docker-based deployment
+- Python MQTT clients
+- Hydra-MQTT toolkit
+- Telemetry logging and detection pipelines
+
+Each simulated vehicle becomes an addressable MQTT endpoint capable of receiving commands and publishing telemetry data.
+
+This enables:
+
+- MQTT-based vehicle command injection testing
+- Telemetry monitoring and replay analysis
+- Malware behavior simulation
+- Network-level attack experimentation
+- Real-time anomaly detection research
 
 ---
 
-## Requirements
+# Architecture
 
-- Ubuntu 20.04 LTS
-- VMware Workstation Pro
-- Python 3
-- Docker
-- Docker Compose
-- CARLA Simulator
-- Mosquitto MQTT Broker
+The sandbox combines three major layers:
+
+## Simulation Layer
+- CARLA server running inside Docker
+- Unreal Engine 4 simulation backend
+- Synchronous simulation mode
+- Multi-vehicle support
+
+## Messaging Layer
+- Eclipse Mosquitto MQTT broker
+- Topic-based command and telemetry exchange
+- Vehicle-specific MQTT topics
+
+## Client Layer
+- Python MQTT clients
+- Pygame rendering interface
+- Telemetry logging system
+- Hydra-MQTT integration
 
 ---
 
-## VMware Environment
+# Features
+
+- ✅ CARLA 0.9.13 integration
+- ✅ Dockerized simulation environment
+- ✅ MQTT-based vehicle communication
+- ✅ Multi-vehicle simulation
+- ✅ Telemetry collection and logging
+- ✅ Hydra-MQTT toolkit support
+- ✅ Malware command injection experimentation
+- ✅ Real-time telemetry monitoring
+- ✅ Detection engine architecture
+- ✅ CSV logging for replay and analysis
+- ✅ MQTT topic-based command routing
+- ✅ Headless CARLA support (No-rendering mode)
+
+---
+
+# VMware Environment
 
 The following VMware files were used:
 
@@ -68,14 +98,14 @@ These files provide a preconfigured Ubuntu 20 environment prepared for CARLA sim
 
 ---
 
-## Virtual Machine Login
+# Virtual Machine Login
 
 ```bash
 Username: carla
 Password: carla
 ```
 
-A separate workspace was created for experimentation:
+Create personal workspace:
 
 ```bash
 mkdir ~/Desktop/imran
@@ -83,13 +113,22 @@ mkdir ~/Desktop/imran
 
 ---
 
-## Clone Repository
+# Requirements
+
+- Ubuntu 20.04 LTS
+- Python 3.7+
+- Docker
+- Docker Compose
+- VMware Workstation Pro
+- CARLA Simulator 0.9.13
+
+---
+
+# Clone Repository
 
 ```bash
 git clone https://github.com/your-username/your-repository-name.git
 ```
-
-Move repository to Desktop:
 
 ```bash
 mv your-repository-name ~/Desktop/
@@ -98,7 +137,7 @@ cd ~/Desktop/your-repository-name
 
 ---
 
-## Install Docker
+# Install Docker
 
 Update packages:
 
@@ -118,7 +157,7 @@ Start Docker service:
 sudo systemctl start docker
 ```
 
-Enable Docker on boot:
+Enable Docker:
 
 ```bash
 sudo systemctl enable docker
@@ -132,19 +171,19 @@ docker --version
 
 ---
 
-## Install Docker Compose
+# Install Docker Compose
 
 ```bash
 sudo apt install docker-compose -y
 ```
 
-Verify installation:
+Verify:
 
 ```bash
 docker-compose --version
 ```
 
-Add current user to Docker group:
+Add user to Docker group:
 
 ```bash
 sudo usermod -aG docker $USER
@@ -153,26 +192,26 @@ newgrp docker
 
 ---
 
-## Start CARLA MQTT Environment
+# Start CARLA MQTT Environment
 
-Navigate to the project directory:
+Navigate to project directory:
 
 ```bash
 cd cav-sandbox-mqtt-master
 ```
 
-Start Docker containers:
+Launch containers:
 
 ```bash
 sudo docker compose up
 ```
 
-This launches:
+This starts:
 
-- CARLA server container
-- Mosquitto MQTT broker container
+- CARLA Server
+- Mosquitto MQTT Broker
 
-Default MQTT broker port:
+Default MQTT Port:
 
 ```bash
 1883
@@ -180,15 +219,15 @@ Default MQTT broker port:
 
 ---
 
-## Configure MQTT Client
+# Configure MQTT Client
 
-Modify the MQTT broker configuration inside:
+Edit broker configuration inside:
 
 ```bash
 /app/main.py
 ```
 
-Set broker:
+Change:
 
 ```python
 broker = "localhost"
@@ -196,7 +235,7 @@ broker = "localhost"
 
 ---
 
-## Install Python Dependencies
+# Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -204,15 +243,15 @@ pip install -r requirements.txt
 
 ---
 
-## Run CARLA Simulation
+# Run CARLA Simulation
 
-Run simulation with a single vehicle:
+Single vehicle:
 
 ```bash
 python3 run.py --num-cars 1
 ```
 
-Run with multiple vehicles:
+Multiple vehicles:
 
 ```bash
 python3 run.py --num-cars 2
@@ -222,57 +261,135 @@ python3 run.py --num-cars 4
 
 ---
 
-## MQTT Client Workspace
+# MQTT Topic Scheme
 
-Copy MQTT client into a personal workspace:
-
-```bash
-cp -r carla-client-mqtt ~/Desktop/imran/
-```
+| Topic | Direction | Description |
+|---|---|---|
+| carla/car{N}/control | SUB | Vehicle command input |
+| carla/car{N}/location | PUB | Vehicle position |
+| carla/car{N}/velocity | PUB | Vehicle velocity |
+| carla/car{N}/acceleration | PUB | Vehicle acceleration |
+| carla/car{N}/gnss | PUB | GPS telemetry |
 
 ---
 
-## Run MQTT Client
-
-Execute the MQTT client:
+# Run MQTT Client
 
 ```bash
 python3 client.py --broker localhost --topics topics.txt --commands commands.txt
 ```
 
-This connects to the local MQTT broker and enables topic-based communication with the CARLA simulation environment.
+This connects the MQTT client to the local Mosquitto broker and enables CARLA vehicle communication.
 
 ---
 
-## Hydra-MQTT Toolkit
+# Hydra-MQTT Toolkit
 
-### Verify Installation
+## Verify Installation
 
 ```bash
 python3 mqtthydra.py -h
 ```
 
-This displays:
-
-- Available command-line options
-- Topic configuration settings
-- MQTT interaction commands
-
 ---
 
-## Run Hydra-MQTT Toolkit
-
-Execute Hydra-MQTT with custom topic and command files:
+## Execute Hydra-MQTT
 
 ```bash
 python3 mqtthydra.py --carla_command commands.txt --carla_topic topics.txt
 ```
 
-The toolkit connects to the local MQTT broker and subscribes to configured CARLA MQTT topics for communication monitoring and experimentation.
+The toolkit subscribes to CARLA MQTT topics and performs MQTT command interaction testing.
 
 ---
 
-## Project Structure
+# Command Map
+
+The default command vocabulary:
+
+```python
+command_map = {
+    "stop": {"brake": 1.0},
+    "forward": {"throttle": 0.5, "steer": 0.0, "brake": 0.0},
+    "left": {"throttle": 0.3, "steer": -0.5, "brake": 0.0},
+    "right": {"throttle": 0.3, "steer": 0.5, "brake": 0.0},
+}
+```
+
+---
+
+# Telemetry Lifecycle
+
+Each vehicle continuously publishes:
+
+- Location
+- Velocity
+- Acceleration
+- GNSS data
+
+Telemetry is:
+- Published through MQTT
+- Logged into CSV files
+- Consumed by the detection engine
+
+---
+
+# Malware Detection Engine
+
+The project includes the design of a layered malware detection engine capable of:
+
+- Detecting anomalous MQTT behavior
+- Monitoring telemetry drift
+- Detecting spoofed telemetry
+- Identifying command flooding attacks
+- Performing statistical anomaly detection
+- Running ML-based behavioral analysis
+
+## Detection Layers
+
+### Rule-Based Detection
+- Command-rate thresholding
+- Invalid command detection
+- Forbidden topic publishing
+- Telemetry spoofing checks
+
+### Statistical Detection
+- Z-score analysis
+- EWMA drift monitoring
+- MQTT latency analysis
+
+### ML-Based Detection
+- Isolation Forest
+- LSTM sequence anomaly detection
+
+---
+
+# Threat Scenarios Supported
+
+- Command injection
+- Replay attacks
+- MQTT flooding
+- Topic hijacking
+- Telemetry spoofing
+- Stealthy steering drift
+- Latency attacks
+
+---
+
+# Logging System
+
+Generated logs:
+
+```bash
+logs/all_vehicles_log.csv
+logs/per_vehicle/{car}.csv
+logs/per_vehicle/{car}_latency.csv
+logs/incidents.csv
+```
+
+---
+
+# Project Structure
 
 ```bash
 cav-sandbox-mqtt-master/
@@ -285,44 +402,63 @@ cav-sandbox-mqtt-master/
 ├── commands.txt
 ├── topics.txt
 ├── mqtthydra.py
+├── telemetry_logger.py
+├── mqtt_car_client.py
+├── world.py
+├── hud.py
 └── carla-client-mqtt/
 ```
 
 ---
 
-## Technologies Used
+# Technologies Used
 
-- Ubuntu 20
-- VMware Workstation Pro
+- CARLA Simulator 0.9.13
 - Docker
 - Docker Compose
-- CARLA Simulator
 - Mosquitto MQTT Broker
+- Paho MQTT
 - Python 3
-- Hydra-MQTT Toolkit
+- Pygame
+- VMware Workstation Pro
 
 ---
 
-## Research and Educational Disclaimer
+# Research Use Cases
 
-This project and toolkit are intended strictly for:
+- Connected vehicle cybersecurity
+- MQTT attack simulation
+- Malware analysis
+- Vehicle telemetry analysis
+- Cloud-connected automotive systems
+- Anomaly detection research
+- Autonomous vehicle security
 
-- Research
+---
+
+# References
+
+- CARLA Documentation
+- Eclipse Mosquitto
+- Paho MQTT Python Client
+- starter-carla-0913 project
+
+---
+
+# Research and Educational Disclaimer
+
+This project is intended strictly for:
+
+- Academic research
 - Educational purposes
-- Controlled lab experimentation
-- MQTT communication testing
+- Controlled cybersecurity experiments
+- Authorized testing environments
 
-Do not deploy these tools against unauthorized or production systems.
-
----
-
-## License
-
-This project is intended for academic and research purposes.
+Do not deploy against production or unauthorized systems.
 
 ---
 
-## Author
+# Author
 
 Imran Hasan
 
