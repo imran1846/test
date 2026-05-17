@@ -1,27 +1,62 @@
+<div align="center">
+  <kbd>
+    <img src="img/logo.png" width="70%"/>
+  </kbd>
+</div>
+<br />
+
 # CARLA Simulator with MQTT & Hydra Toolkit
 
-A practical setup and experimentation environment for running the CARLA autonomous driving simulator with MQTT-based communication and the Hydra-MQTT toolkit for topic interaction and reconnaissance testing.
+A practical sandbox environment for experimenting with the CARLA autonomous driving simulator, MQTT communication, and the Hydra-MQTT toolkit for reconnaissance and command interaction testing.
+
+This environment integrates CARLA, Docker, Mosquitto MQTT broker, and Python MQTT clients to simulate connected vehicle communication and controlled MQTT-based experimentation.
+
+---
 
 ## Overview
 
 This project demonstrates:
 
-- CARLA simulator setup inside Ubuntu VM
-- MQTT broker communication using Mosquitto
-- Docker-based deployment environment
+- CARLA simulator deployment inside Ubuntu VM
+- MQTT communication using Mosquitto broker
+- Docker-based CARLA environment
 - MQTT client interaction with CARLA
-- Hydra-MQTT toolkit execution and testing
+- Hydra-MQTT toolkit integration
 - Multi-vehicle simulation support
+- MQTT topic monitoring and command testing
 
-> This setup is intended for research, learning, and controlled lab experimentation purposes only.
+> This project is intended for research, educational purposes, and controlled lab experimentation only.
 
 ---
 
-# Environment Setup
+## Features
 
-## VMware Files
+- ✅ CARLA simulator running in Docker containers
+- ✅ Mosquitto MQTT broker integration
+- ✅ MQTT client communication with CARLA
+- ✅ Multiple simulated vehicle support
+- ✅ Hydra-MQTT toolkit execution and testing
+- ✅ Docker Compose deployment workflow
+- ✅ Lightweight Python MQTT client implementation
+- ✅ Ubuntu 20 virtual machine environment
 
-The following VMware virtual machine files were used:
+---
+
+## Requirements
+
+- Ubuntu 20.04 LTS
+- VMware Workstation Pro
+- Python 3
+- Docker
+- Docker Compose
+- CARLA Simulator
+- Mosquitto MQTT Broker
+
+---
+
+## VMware Environment
+
+The following VMware files were used:
 
 ```bash
 carla-ubuntu-20.ovf
@@ -29,20 +64,18 @@ carla-ubuntu-20.mf
 carla-ubuntu-20-disk1.vmdk
 ```
 
-These files contain a preconfigured Ubuntu 20 environment prepared for CARLA simulation.
+These files provide a preconfigured Ubuntu 20 environment prepared for CARLA simulation and MQTT experimentation.
 
 ---
 
-# Virtual Machine Login
+## Virtual Machine Login
 
 ```bash
 Username: carla
 Password: carla
 ```
 
-After logging into the VM, a separate personal workspace was created for custom experimentation and testing.
-
-Example:
+A separate workspace was created for experimentation:
 
 ```bash
 mkdir ~/Desktop/imran
@@ -50,15 +83,13 @@ mkdir ~/Desktop/imran
 
 ---
 
-# Clone Repository
-
-Clone the project repository:
+## Clone Repository
 
 ```bash
 git clone https://github.com/your-username/your-repository-name.git
 ```
 
-Move the repository to the Desktop:
+Move repository to Desktop:
 
 ```bash
 mv your-repository-name ~/Desktop/
@@ -67,9 +98,9 @@ cd ~/Desktop/your-repository-name
 
 ---
 
-# Install Docker
+## Install Docker
 
-Update package lists:
+Update packages:
 
 ```bash
 sudo apt update
@@ -87,7 +118,7 @@ Start Docker service:
 sudo systemctl start docker
 ```
 
-Enable Docker at boot:
+Enable Docker on boot:
 
 ```bash
 sudo systemctl enable docker
@@ -101,7 +132,7 @@ docker --version
 
 ---
 
-# Install Docker Compose
+## Install Docker Compose
 
 ```bash
 sudo apt install docker-compose -y
@@ -122,7 +153,7 @@ newgrp docker
 
 ---
 
-# Start CARLA MQTT Environment
+## Start CARLA MQTT Environment
 
 Navigate to the project directory:
 
@@ -130,7 +161,7 @@ Navigate to the project directory:
 cd cav-sandbox-mqtt-master
 ```
 
-Start containers:
+Start Docker containers:
 
 ```bash
 sudo docker compose up
@@ -149,9 +180,7 @@ Default MQTT broker port:
 
 ---
 
-# Configure MQTT Client
-
-Navigate to the client-side project directory.
+## Configure MQTT Client
 
 Modify the MQTT broker configuration inside:
 
@@ -159,7 +188,7 @@ Modify the MQTT broker configuration inside:
 /app/main.py
 ```
 
-Set broker configuration:
+Set broker:
 
 ```python
 broker = "localhost"
@@ -167,9 +196,7 @@ broker = "localhost"
 
 ---
 
-# Install Python Dependencies
-
-Install required packages:
+## Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -177,17 +204,15 @@ pip install -r requirements.txt
 
 ---
 
-# Run CARLA Simulation
+## Run CARLA Simulation
 
-Run simulation with different numbers of vehicles.
-
-Single vehicle:
+Run simulation with a single vehicle:
 
 ```bash
 python3 run.py --num-cars 1
 ```
 
-Multiple vehicles:
+Run with multiple vehicles:
 
 ```bash
 python3 run.py --num-cars 2
@@ -197,9 +222,9 @@ python3 run.py --num-cars 4
 
 ---
 
-# Copy MQTT Client Workspace
+## MQTT Client Workspace
 
-Copy the MQTT client project into a separate workspace:
+Copy MQTT client into a personal workspace:
 
 ```bash
 cp -r carla-client-mqtt ~/Desktop/imran/
@@ -207,7 +232,7 @@ cp -r carla-client-mqtt ~/Desktop/imran/
 
 ---
 
-# Run MQTT Client
+## Run MQTT Client
 
 Execute the MQTT client:
 
@@ -215,15 +240,13 @@ Execute the MQTT client:
 python3 client.py --broker localhost --topics topics.txt --commands commands.txt
 ```
 
-This connects the MQTT client to the local broker and enables topic-based interaction with the CARLA environment.
+This connects to the local MQTT broker and enables topic-based communication with the CARLA simulation environment.
 
 ---
 
-# Hydra-MQTT Toolkit
+## Hydra-MQTT Toolkit
 
-## Verify Installation
-
-Run help command:
+### Verify Installation
 
 ```bash
 python3 mqtthydra.py -h
@@ -231,27 +254,25 @@ python3 mqtthydra.py -h
 
 This displays:
 
-- Available CLI options
+- Available command-line options
 - Topic configuration settings
 - MQTT interaction commands
 
 ---
 
-# Run Hydra-MQTT Toolkit
+## Run Hydra-MQTT Toolkit
 
-Execute Hydra-MQTT using custom topic and command files:
+Execute Hydra-MQTT with custom topic and command files:
 
 ```bash
 python3 mqtthydra.py --carla_command commands.txt --carla_topic topics.txt
 ```
 
-This connects to the MQTT broker and subscribes to configured CARLA MQTT topics for testing and experimentation.
+The toolkit connects to the local MQTT broker and subscribes to configured CARLA MQTT topics for communication monitoring and experimentation.
 
 ---
 
-# Project Structure
-
-Example structure:
+## Project Structure
 
 ```bash
 cav-sandbox-mqtt-master/
@@ -269,7 +290,7 @@ cav-sandbox-mqtt-master/
 
 ---
 
-# Technologies Used
+## Technologies Used
 
 - Ubuntu 20
 - VMware Workstation Pro
@@ -282,7 +303,7 @@ cav-sandbox-mqtt-master/
 
 ---
 
-# Research and Educational Disclaimer
+## Research and Educational Disclaimer
 
 This project and toolkit are intended strictly for:
 
@@ -295,7 +316,13 @@ Do not deploy these tools against unauthorized or production systems.
 
 ---
 
-# Author
+## License
+
+This project is intended for academic and research purposes.
+
+---
+
+## Author
 
 Imran Hasan
 
